@@ -8,12 +8,33 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var mainTitle: UILabel!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        mainTitle.layer.cornerRadius = 10
+        mainTitle.layer.masksToBounds = true
+        
+        searchBar.layer.cornerRadius = 10
+        searchBar.layer.masksToBounds = true
     }
+    
+}
 
-
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let userInputText = searchBar.text else {
+            return
+        }
+        if userInputText == "" {
+            let alert = UIAlertController(title: "검색어 없음", message: "검색어를 입력하세요.", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "확인", style: .cancel)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true)
+        }
+    }
 }
 
