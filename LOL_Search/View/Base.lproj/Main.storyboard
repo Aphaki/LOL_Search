@@ -75,6 +75,7 @@
                     <connections>
                         <outlet property="mainTitle" destination="i6H-l3-TZK" id="Yuy-BY-8D5"/>
                         <outlet property="searchBar" destination="rz4-Mh-Umm" id="0s4-TT-kOI"/>
+                        <outlet property="searchedSummonersTV" destination="Chq-xZ-qQM" id="zbq-ob-UwU"/>
                         <segue destination="mkf-wx-s7h" kind="show" identifier="GoToSummonerView" id="ZIz-rY-qNd"/>
                     </connections>
                 </viewController>

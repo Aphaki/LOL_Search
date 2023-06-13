@@ -13,15 +13,8 @@ class MainVM {
     
     let service = Service()
     
-    // Related Input
-//    let summonerName = BehaviorRelay<String>(value: "")
-    
-    
-    // Related Output
-    let serchedDetailFinished = PublishSubject<Void>()
-    
     private (set)var urlBase: UrlHeadPoint = .kr
-    private (set)var searchedSummonerDetail: DetailSummonerInfo? = nil
+    private (set)var searchedSummonerDetails: [DetailSummonerInfo] = []
     
     init() {
         subscribe()
@@ -33,7 +26,8 @@ class MainVM {
     
     func searchSummonersInfo(name: String) {
         Task {
-           try await service.saveSearchedSummonerDetail(urlBase: urlBase, name: name)
+            let value = try await service.saveSearchedSummonerDetail(urlBase: urlBase, name: name)
+            self.searchedSummonerDetails.append(value)
         }
     }
     

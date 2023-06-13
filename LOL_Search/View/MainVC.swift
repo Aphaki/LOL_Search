@@ -9,11 +9,12 @@ import UIKit
 
 class MainVC: UIViewController {
     
+    private var mainVM = MainVM()
+    
     @IBOutlet weak var mainTitle: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private var mainVM = MainVM()
-    
+    @IBOutlet weak var searchedSummonersTV: UITableView!
     
     // 최근 검색된 소환사
 //    var latestSummoners:
@@ -21,6 +22,8 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         roundedUI()
+        searchedSummonersTV.dataSource = self
+        searchedSummonersTV.delegate = self
     }
     
     private func roundedUI() {
@@ -28,9 +31,9 @@ class MainVC: UIViewController {
         mainTitle.layer.masksToBounds = true
     }
     
-    private func bindUserInteractions() {
-        
-    }
+//    private func bindUserInteractions() {
+//
+//    }
     
     
 }
@@ -47,20 +50,27 @@ extension MainVC: UISearchBarDelegate {
             self.present(alert, animated: true)
         } else {
             mainVM.searchSummonersInfo(name: userInputText)
+            searchedSummonersTV.reloadData()
         }
     }
 }
 
 extension MainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 // 셀의 갯수
+        return mainVM.searchedSummonerDetails.count // 셀의 갯수
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LatestSummonerCell", for: indexPath) as! LatestSummonerCell
-        
+        cell.config(mainVM.searchedSummonerDetails[indexPath.row])
         
         return cell
+    }
+}
+
+extension MainVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
 

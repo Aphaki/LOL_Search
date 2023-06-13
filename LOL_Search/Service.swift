@@ -20,7 +20,7 @@ class Service {
     
     private var subscription = Set<AnyCancellable>()
     
-    //
+    //MARK: - API Request
     func requestSummonerInfo(urlBaseHead: UrlHeadPoint, name: String) async throws -> SummonerInfo {
         try await NetworkManager.shared.requestSummonerInfo(urlBaseHead: urlBaseHead, name: name)
     }
@@ -43,7 +43,7 @@ class Service {
     }
     
     
-    
+    //MARK: - Save in property
     func saveMyDetail(urlBase: UrlHeadPoint, name: String) async throws {
         
         await MainActor.run {
@@ -61,23 +61,11 @@ class Service {
         }
     }
     
-    func saveSearchedSummonerDetail(urlBase: UrlHeadPoint, name: String) async throws {
-        await MainActor.run {
-            self.isLoading = true
-            
-        }
-        
-        let searchedSummonerDetail =
-        try await fetchAndChangeToDetail(urlBase: urlBase, name: name)
-        
-        await MainActor.run(body: {
-            self.searchedDetail = searchedSummonerDetail
-            
-            self.isLoading = false
-        })
-        
+    func saveSearchedSummonerDetail(urlBase: UrlHeadPoint, name: String) async throws -> DetailSummonerInfo {
+        return try await fetchAndChangeToDetail(urlBase: urlBase, name: name)
     }
     
+    //MARK: -
     func fetchAndChangeToDetail(urlBase:UrlHeadPoint, name: String) async throws -> DetailSummonerInfo {
         
         await MainActor.run {
