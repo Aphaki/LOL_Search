@@ -8,20 +8,15 @@
 import Foundation
 import Combine
 import Alamofire
+//import RxSwift
 
 
 class Service {
     
-    @Published var regionPicker: UrlHeadPoint = .kr
-    @Published var searchBarText: String = ""
     @Published var isLoading: Bool = false
     
     @Published var searchedDetail: DetailSummonerInfo?
     @Published var myDetailSummonerInfo: DetailSummonerInfo?
-    @Published var searchedSummonersDetail: [DetailSummonerInfo] = []
-    @Published var bookMarkSummonersDetail: [DetailSummonerInfo] = []
-    
-//    @Published var noSummonerError = PassthroughSubject<(),Never>()
     
     private var subscription = Set<AnyCancellable>()
     

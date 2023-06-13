@@ -12,6 +12,9 @@ class MainVC: UIViewController {
     @IBOutlet weak var mainTitle: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    private var mainVM = MainVM()
+    
+    
     // 최근 검색된 소환사
 //    var latestSummoners:
     
@@ -23,9 +26,13 @@ class MainVC: UIViewController {
     private func roundedUI() {
         mainTitle.layer.cornerRadius = mainTitle.layer.frame.height / 5
         mainTitle.layer.masksToBounds = true
-//        searchBar.layer.cornerRadius = 10
-//        searchBar.layer.masksToBounds = true
     }
+    
+    private func bindUserInteractions() {
+        
+    }
+    
+    
 }
 
 extension MainVC: UISearchBarDelegate {
@@ -39,7 +46,7 @@ extension MainVC: UISearchBarDelegate {
             alert.addAction(alertAction)
             self.present(alert, animated: true)
         } else {
-            
+            mainVM.searchSummonersInfo(name: userInputText)
         }
     }
 }

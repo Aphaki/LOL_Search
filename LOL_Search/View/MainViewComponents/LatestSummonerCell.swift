@@ -25,4 +25,24 @@ class LatestSummonerCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func config(_ info: DetailSummonerInfo) {
+        // 아이콘
+        let iconImg = UIImage()
+        let url = info.icon.toIconImgURL()
+        Task {
+           try await iconImg.fetchImage(url: url)
+        }
+        iconImage.image = iconImg
+        
+        // 소환사 이름
+        summonerName.text = info.summonerName
+        
+        // 티어 이미지
+        let tierLowercase = info.tier.lowercased()
+        rankTierImage.image = UIImage(named: tierLowercase)
+        
+        // 티어 이름
+        rankTierLabel.text = info.tier.uppercased()
+        
+    }
 }
