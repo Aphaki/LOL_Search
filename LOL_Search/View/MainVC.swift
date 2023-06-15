@@ -13,11 +13,7 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var mainTitle: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var searchedSummonersTV: UITableView!
-    
-    // 최근 검색된 소환사
-//    var latestSummoners:
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +26,6 @@ class MainVC: UIViewController {
         mainTitle.layer.cornerRadius = mainTitle.layer.frame.height / 5
         mainTitle.layer.masksToBounds = true
     }
-    
-//    private func bindUserInteractions() {
-//
-//    }
-    
-    
 }
 
 extension MainVC: UISearchBarDelegate {
