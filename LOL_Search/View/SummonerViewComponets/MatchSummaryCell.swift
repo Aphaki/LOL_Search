@@ -1,5 +1,5 @@
 //
-//  AMatchSummaryCell.swift
+//  MatchSummaryCell.swift
 //  LOL_Search
 //
 //  Created by Sy Lee on 2023/06/15.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AMatchSummaryCell: UITableViewCell {
+class MatchSummaryCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
